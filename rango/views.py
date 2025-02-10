@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.http import HttpResponse
-
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage matches to {{ boldmessage }} in the template!
@@ -11,5 +9,10 @@ def index(request):
     # Note that the first parameter is the template we wish to use.
     return render(request, 'rango/index.html', context=context_dict)
 
+
+# Create your views here.
 def about(request):
-    return HttpResponse("Rango says here is the about page. <a href='/rango/'>Index</a>")
+    #link = '<a href="/rango/">Index</a>'
+    # Update the HttpResponse to include the hyperlink
+    #return HttpResponse(f"Rango says hey there partner! Heres a link to the {link}.")
+    return render(request, 'rango/about.html')
