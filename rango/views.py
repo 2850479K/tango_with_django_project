@@ -28,9 +28,10 @@ def index(request):
 
 # Create your views here.
 def about(request):
-    #link = '<a href="/rango/">Index</a>'
-    # Update the HttpResponse to include the hyperlink
-    #return HttpResponse(f"Rango says hey there partner! Heres a link to the {link}.")
+    # prints out whether the method is a GET or a POST
+    print(request.method)
+    # prints out the user name, if no one is logged in it prints `AnonymousUser`
+    print(request.user)
     return render(request, 'rango/about.html')
 
 def show_category(request, category_name_slug):
