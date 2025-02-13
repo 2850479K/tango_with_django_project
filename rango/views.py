@@ -25,7 +25,6 @@ def index(request):
 
     visitor_cookie_handler(request)
 
-    context_dict['visits'] = request.session['visits']
 
     response = render(request, 'rango/index.html', context=context_dict)
     return response
@@ -34,12 +33,16 @@ def index(request):
 
 # Create your views here.
 def about(request):
-    # prints out whether the method is a GET or a POST
-    print(request.method)
-    # prints out the user name, if no one is logged in it prints `AnonymousUser`
-    print(request.user)
+    # Create response object
+    response = render(request, 'rango/about.html')
 
-    return render(request, 'rango/about.html')
+    # Call visitor_cookie_handler() to update visits
+    visitor_cookie_handler(request)
+
+    # Get the visit count
+    visits = request.session.get('visits', 1)
+
+    return render(request, 'rango/about.html', {'visits': visits})
 
 def show_category(request, category_name_slug):
     # Create a context dictionary which we can pass
